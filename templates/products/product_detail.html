@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <div class="row">
+        <div class="col-images">
+            <div class="main-image">
+                {% with main_image=product.images.first %}
+                    {% if main_image %}
+                        <img src="{{ main_image.image.url }}" alt="{{ product.name }}" id="mainProductImage">
+                    {% else %}
+                        <img src="{% static 'img/no-image.jpg' %}" alt="Нет изображения">
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="thumbnails">
+                {% for image in product.images.all %}
+                    <img src="{{ image.image.url }}" alt="{{ product.name }}" class="thumbnail" onclick="document.getElementById('mainProductImage').src='{{ image.image.url }}'">
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-info">
+            <h1>{{ product.name }}</h1>
+            <div class="price">{{ product.price }} ₽</div>
+            <div class="stock">В наличии: {{ product.stock }} шт.</div>
+            <div class="description">
+                <h3>Описание</h3>
+                <p>{{ product.description }}</p>
+            </div>
+            {% if user.is_authenticated %}
+                <form action="{% url 'cart_add' %}" method="post" class="add-to-cart-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <label for="quantity">Количество:</label>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" max="{{ product.stock }}">
+                    <button type="submit" class="btn btn-success">Купить</button>
+                </form>
+            {% else %}
+                <p><a href="{% url 'login' %}" style="color: #3498db;">Войдите</a>, чтобы купить.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

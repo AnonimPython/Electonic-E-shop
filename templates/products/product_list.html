@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Каталог товаров</h2>
+<div class="products-grid">
+    {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'product_detail' product.slug %}">
+                {% with main_image=product.images.first %}
+                    {% if main_image %}
+                        <img src="{{ main_image.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="{% static 'img/no-image.jpg' %}" alt="Нет изображения">
+                    {% endif %}
+                {% endwith %}
+            </a>
+            <div class="product-info">
+                <h3><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h3>
+                <div class="price">{{ product.price }} ₽</div>
+                <div class="stock">В наличии: {{ product.stock }} шт.</div>
+                {% if user.is_authenticated %}
+                    <form action="{% url 'cart_add' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}">
+                        <button type="submit" class="btn btn-primary">В корзину</button>
+                    </form>
+                {% else %}
+                    <p><a href="{% url 'login' %}">Войдите</a>, чтобы купить.</p>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>Товаров пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

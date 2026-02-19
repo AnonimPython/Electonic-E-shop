@@ -66,7 +66,8 @@
 ---
 
 ## Структура проекта
-
+**bash**
+```
 electronic/
 ├── config/ # Django project settings (settings.py, urls.py)
 ├── users/ # User app (custom user model, balance)
@@ -80,6 +81,7 @@ electronic/
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
@@ -165,7 +167,7 @@ electronic/
 
 ## Переменные окружения
 
-Создайте файл `.envs/.env` на основе примера:
+Откройте файл `.envs/.env` на основе примера (в файле уже есть тестовые данные):
 
 **ini**
 
@@ -279,4 +281,4 @@ POSTGRES_PORT=5432
 
 ## Лицензия
 
-Этот проект распространяется под лицензией MIT. Подробнее см. в файле [LICENSE](https://license/).
+Этот проект распространяется под лицензией MIT. Подробнее см. в файле [LICENSE](https://github.com/AnonimPython/Electonic-E-shop/blob/main/LICENCE).

@@ -98,7 +98,7 @@ electronic/
    **bash**
 
    ```
-   git clone https://github.com/yourusername/electronic.git
+   git clone https://github.com/AnonimPython/Electonic-E-shop
    cd electronic
    ```
 2. **Create and activate virtual environment:**
@@ -168,7 +168,7 @@ electronic/
 
 ## Environment Variables
 
-Create a `.envs/.env` file based on the example:
+Open a `.envs/.env` file based on the example (in file have test data):
 
 **ini**
 
@@ -282,6 +282,6 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://license/) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/AnonimPython/Electonic-E-shop/blob/main/LICENCE) file for details.
 
-## [Русская документация](READMERU.MD)
+## [Русская документация](https://github.com/AnonimPython/Electonic-E-shop/blob/main/READMERU.MD)
